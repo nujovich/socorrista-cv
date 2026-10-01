@@ -6,7 +6,7 @@ import pathlib
 root = pathlib.Path(__file__).resolve().parent
 src = root / 'src'
 css = (src / 'styles.css').read_text(encoding='utf-8')
-js = '\n'.join((src / f).read_text(encoding='utf-8') for f in ['content-shared.js', 'content-cases.js', 'content-exam.js', 'app.js'])
+js = '\n'.join((src / f).read_text(encoding='utf-8') for f in ['content-shared.js', 'content-cases.js', 'content-exam.js', 'game.js', 'app.js'])
 assert '</script' not in js.lower(), 'script tag inside JS'
 
 html = f'''<!DOCTYPE html>

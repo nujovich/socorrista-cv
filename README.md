@@ -6,6 +6,7 @@ App web para practicar situaciones de primeros auxilios y salvamento acuático, 
 
 - **Casos**: 12 escenarios (piscina, playa, parque acuático, aguas abiertas) con fase de rescate y de primeros auxilios. En cada paso eliges la acción; la corrección cita la unidad del temario. Feedback con banderas: verde, amarilla y roja (una acción que causa daño invalida el caso, como en el examen de la FSSCV).
 - **Examen**: test de 10 o 20 preguntas de un banco de 52, corrección al final.
+- **Simulación**: rescate 2D en tiempo real (señal, material, entrada, nado, control, remolque, extracción) y mini-juegos de técnica (VOS, insuflaciones, RCP a ritmo, DESA), con la víctima empeorando mientras tardas.
 - **Diálogo**: simulacro conversacional con IA (víctima, testigos y entorno), con dictado y lectura en voz alta.
 - **Progreso**: notas por caso, historial de exámenes, errores críticos, exportar/importar.
 
@@ -26,6 +27,7 @@ src/
   content-shared.js   cadenas de interfaz (ES/VA) y pasos reutilizables
   content-cases.js    los 12 casos
   content-exam.js     banco de preguntas
+  game.js             simulación 2D y mini-juegos
   app.js              lógica
   styles.css
 build.py              genera index.html

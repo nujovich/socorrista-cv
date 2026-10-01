@@ -62,7 +62,7 @@
   }
 
   /* ---------- progress ---------- */
-  const emptyProgress = () => ({ v: 1, name: '', cases: {}, exams: [], dialogs: {}, updatedAt: 0 });
+  const emptyProgress = () => ({ v: 1, name: '', cases: {}, exams: [], dialogs: {}, games: {}, updatedAt: 0 });
 
   function loadLocal() {
     try { const raw = ls.get('scv-progress'); return raw ? JSON.parse(raw) : null; } catch (e) { return null; }
@@ -116,6 +116,13 @@
     p.cases[caseId] = c;
     saveProgress();
   }
+  function recordGame(id, score, flag, critSteps) {
+    const p = S.progress; p.games = p.games || {};
+    const g = p.games[id] || { attempts: 0, best: 0, lastFlag: null, lastAt: 0, critical: [] };
+    g.attempts += 1; g.best = Math.max(g.best, score); g.lastFlag = flag; g.lastAt = Date.now();
+    const seen = new Set(g.critical); critSteps.forEach((t) => { if (!seen.has(t)) { seen.add(t); g.critical.push(t); } }); g.critical = g.critical.slice(-12);
+    p.games[id] = g; saveProgress();
+  }
   function recordExam(n, score, invalid) {
     S.progress.exams.push({ at: Date.now(), n, score, invalid });
     S.progress.exams = S.progress.exams.slice(-30);
@@ -147,7 +154,7 @@
   /* ---------- header ---------- */
   function renderTop() {
     const { view } = route();
-    const tabs = [['cases', UI.nav.cases], ['exam', UI.nav.exam], ['dialog', UI.nav.dialog], ['progress', UI.nav.progress]];
+    const tabs = [['cases', UI.nav.cases], ['game', UI.nav.game], ['exam', UI.nav.exam], ['dialog', UI.nav.dialog], ['progress', UI.nav.progress]];
     const active = view === 'case' ? 'cases' : view;
     $top.innerHTML =
       '<div class="brand"><h1>' + esc(L(UI.appName)) + '</h1><p>' + esc(L(UI.tagline)) + (userName() ? ' · ' + esc(L(UI.hello)) + ', ' + esc(userName()) : '') + '</p></div>' +
@@ -180,7 +187,9 @@
     renderTop();
     const { view, arg } = route();
     window.scrollTo(0, 0);
+    if (view !== 'game') GAME.stop();
     if (view === 'case' && arg) return renderCase(arg);
+    if (view === 'game') return GAME.render($app, arg);
     if (view === 'exam') return renderExam();
     if (view === 'dialog') return renderDialog(arg);
     if (view === 'progress') return renderProgress();
@@ -732,6 +741,9 @@
         return '<a class="mini" href="#case/' + c.id + '">' + flagHtml(pr ? (pr.lastFlag || 'green') : 'none') + '<span>' + esc(L(c.title)) + '</span><strong>' + (pr ? fmtNum(pr.best) : '—') + '</strong></a>';
       }).join('') + '</div>';
     }).join('');
+    const games = Object.keys(p.games || {}).map((id) => ({ id, g: p.games[id] })).filter((x) => x.g);
+    const gamesHtml = games.length ? '<h3>' + esc(L(UI.nav.game)) + '</h3>' + games.map((x) => { const sc = GAME.scenario(x.id); const c = sc ? caseById(sc.caseId) : null; return c ? '<a class="mini" href="#game/' + x.id + '">' + flagHtml(x.g.lastFlag || 'green') + '<span>' + esc(L(c.title)) + '</span><strong>' + fmtNum(x.g.best) + '</strong></a>' : ''; }).join('') : '';
+    games.forEach((x) => (x.g.critical || []).forEach((t) => crits.push({ id: null, gid: x.id, t })));
     const exams = p.exams.slice().reverse().slice(0, 10).map((e) => '<li>' + flagHtml(e.invalid ? 'red' : (e.score >= 6 ? 'green' : 'yellow')) + '<span>' + fmtDate(e.at) + ' · ' + e.n + ' ' + (S.lang === 'va' ? 'preguntes' : 'preguntas') + '</span><strong>' + fmtNum(e.score) + (e.invalid ? ' · ' + esc(L(UI.invalidTag)) : '') + '</strong></li>').join('');
     const empty = !done.length && !p.exams.length && !nDialogs;
     $app.innerHTML =
@@ -742,8 +754,9 @@
         (empty ? '<p class="empty">' + esc(L(UI.empty)) + '</p>' : '') +
         '<div class="stats"><div><strong>' + done.length + '/' + CASES.length + '</strong><span>' + esc(L(UI.casesDone)) + '</span></div><div><strong>' + fmtNum(avg) + '</strong><span>' + esc(L(UI.avg)) + '</span></div><div><strong>' + p.exams.length + '</strong><span>' + esc(L(UI.examsDone)) + '</span></div><div><strong>' + nDialogs + '</strong><span>' + esc(L(UI.dialogsDone)) + '</span></div></div>' +
         byEnv +
+        gamesHtml +
         (exams ? '<h3>' + esc(L(UI.lastExams)) + '</h3><ul class="exam-list">' + exams + '</ul>' : '') +
-        '<h3>' + esc(L(UI.weak)) + '</h3>' + (crits.length ? '<ul class="weak">' + crits.map((x) => '<li>' + flagHtml('red') + '<span><em>' + esc(L(caseById(x.id).title)) + '</em><br>' + esc(x.t) + '</span></li>').join('') + '</ul>' : '<p class="muted">' + esc(L(UI.noWeak)) + '</p>') +
+        '<h3>' + esc(L(UI.weak)) + '</h3>' + (crits.length ? '<ul class="weak">' + crits.map((x) => { const c = x.id ? caseById(x.id) : caseById(GAME.scenario(x.gid).caseId); return '<li>' + flagHtml('red') + '<span><em>' + esc(L(c.title)) + (x.gid ? ' · ' + esc(L(UI.nav.game)) : '') + '</em><br>' + esc(x.t) + '</span></li>'; }).join('') + '</ul>' : '<p class="muted">' + esc(L(UI.noWeak)) + '</p>') +
         '<div class="actions"><button class="btn ghost" data-export>' + esc(L(UI.exportProgress)) + '</button><label class="btn ghost file-btn">' + esc(L(UI.importProgress)) + '<input type="file" accept="application/json,.json" data-import hidden></label><button class="btn ghost danger" data-reset>' + esc(L(UI.reset)) + '</button></div>' +
         '<p class="warn" id="import-warn" hidden></p>' +
       '</article>';
@@ -766,6 +779,16 @@
     $app.querySelector('[data-reset]').onclick = () => { if (confirm(L(UI.resetConfirm))) { S.progress = emptyProgress(); saveProgress(); renderProgress(); } };
     document.getElementById('name-form').onsubmit = (e) => { e.preventDefault(); const v = document.getElementById('name-inp').value.trim(); S.progress.name = v; saveProgress(); renderTop(); renderProgress(); };
   }
+
+  /* ---------- game ---------- */
+  const GAME = createGame({
+    L, esc, UI, CASES, T, lang: () => S.lang, go,
+    flagHtml: (f, c) => flagHtml(f, c),
+    record: recordGame,
+    progress: () => S.progress
+  });
+
+  window.__scvGame = GAME;
 
   /* ---------- boot ---------- */
   function boot() {

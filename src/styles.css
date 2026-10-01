@@ -42,7 +42,7 @@ button, select, textarea { font: inherit; color: inherit; }
 
 /* ---------- top ---------- */
 #top { max-width: 900px; margin: 0 auto; padding: 1rem 1rem 0; display: grid; grid-template-columns: 1fr auto; gap: 0.5rem 1rem; align-items: start; }
-.brand h1 { font-size: clamp(1.6rem, 6vw, 2.4rem); color: var(--sea-ink); text-transform: uppercase; }
+.brand h1 { font-size: clamp(1.35rem, 5vw, 2.4rem); color: var(--sea-ink); text-transform: uppercase; }
 .brand p { margin: 0.1rem 0 0; color: var(--muted); font-size: 0.9rem; }
 .controls { display: flex; gap: 0.5rem; align-items: center; }
 .lang { display: inline-flex; border: 2px solid var(--sea); border-radius: 999px; overflow: hidden; }
@@ -50,7 +50,7 @@ button, select, textarea { font: inherit; color: inherit; }
 .lang button.on { background: var(--sea); color: var(--on-sea); }
 .theme { border: 2px solid var(--line); background: var(--surface); border-radius: 999px; width: 2.4rem; height: 2.4rem; display: grid; place-items: center; cursor: pointer; color: var(--sea-ink); }
 .tabs { grid-column: 1 / -1; display: flex; gap: 0.25rem; border-bottom: 2px solid var(--line); margin-top: 0.4rem; }
-.tabs a { flex: 1; text-align: center; text-decoration: none; color: var(--muted); font-family: var(--font-display); font-weight: 700; font-size: clamp(0.95rem, 4vw, 1.3rem); text-transform: uppercase; padding: 0.5rem 0.3rem; border-bottom: 4px solid transparent; margin-bottom: -2px; white-space: nowrap; }
+.tabs a { flex: 1; text-align: center; text-decoration: none; color: var(--muted); font-family: var(--font-display); font-weight: 700; font-size: clamp(0.8rem, 3.4vw, 1.3rem); text-transform: uppercase; padding: 0.5rem 0.15rem; border-bottom: 4px solid transparent; margin-bottom: -2px; white-space: nowrap; }
 .tabs a.on { color: var(--sea-ink); border-bottom-color: var(--sea); }
 
 /* ---------- layout ---------- */
@@ -231,3 +231,57 @@ details.scene p { margin-top: 0.4rem; }
 .api-panel h3 { margin: 0 0 0.3rem; }
 .field input { border: 2px solid var(--line); border-radius: 10px; padding: 0.6rem; background: var(--surface); width: 100%; }
 .file-btn { cursor: pointer; }
+
+/* ---------- simulación ---------- */
+.g-stage { position: relative; background: var(--surface); border: 1.5px solid var(--line); border-radius: 12px; overflow: hidden; touch-action: none; user-select: none; -webkit-user-select: none; }
+.g-canvas { display: block; width: 100%; height: auto; }
+.g-hud { position: absolute; left: 8px; top: 8px; display: grid; gap: 3px; background: rgba(16,35,43,0.78); color: #fff; padding: 6px 8px; border-radius: 8px; font-size: 0.8rem; min-width: 150px; }
+.g-time { font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; line-height: 1; }
+.g-bar { display: grid; grid-template-columns: 74px 1fr; align-items: center; gap: 6px; }
+.g-bar i { display: block; height: 8px; background: rgba(255,255,255,0.25); border-radius: 999px; overflow: hidden; }
+.g-bar b { display: block; height: 100%; background: #1D8A4A; transition: width 0.2s linear; }
+.g-bar.yellow b { background: #E9B51C; } .g-bar.red b { background: #D7263D; }
+.g-status { font-size: 0.75rem; opacity: 0.9; }
+.g-signal { position: absolute; right: 8px; top: 8px; border: 2px solid #fff; background: #0B4F6C; color: #fff; border-radius: 999px; padding: 0.5rem 0.9rem; font-weight: 700; cursor: pointer; }
+.g-signal[disabled] { opacity: 0.45; cursor: default; }
+.g-joy { position: absolute; left: 14px; bottom: 14px; width: 110px; height: 110px; border-radius: 50%; background: rgba(16,35,43,0.35); border: 2px solid rgba(255,255,255,0.6); display: none; }
+.g-knob { position: absolute; left: 50%; top: 50%; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%; background: rgba(255,255,255,0.85); }
+.g-action { position: absolute; right: 14px; bottom: 14px; width: 92px; height: 92px; border-radius: 50%; border: 3px solid #fff; background: #D7263D; color: #fff; font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; text-transform: uppercase; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,0.25); }
+@media (pointer: coarse) { .g-joy { display: block; } }
+.g-stage.touch .g-joy { display: block; }
+.g-overlay { position: absolute; inset: 0; background: rgba(16,35,43,0.55); display: grid; place-items: center; padding: 1rem; }
+.g-card { background: var(--surface); color: var(--ink); border-radius: 12px; padding: 1rem; width: min(560px, 100%); max-height: 100%; overflow: auto; }
+.g-card h3 { margin: 0 0 0.6rem; }
+.g-card.wide { width: 100%; }
+.g-log { margin-top: 0.5rem; font-size: 0.9rem; min-height: 1.5rem; }
+.g-log p { margin: 0.15rem 0; color: var(--muted); }
+.g-log p span { font-family: var(--font-display); font-weight: 700; color: var(--sea-ink); margin-right: 0.3rem; }
+.g-log p.ok { color: var(--green); } .g-log p.bad { color: var(--red); font-weight: 700; } .g-log p.warn { color: #9A7612; }
+.g-pa { padding: 0.8rem; display: grid; gap: 0.6rem; }
+.g-pahud { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; background: var(--bg); border: 1.5px solid var(--line); border-radius: 10px; padding: 0.5rem 0.8rem; }
+.g-pahud .g-bar { min-width: 180px; } .g-pahud .g-bar i { background: var(--line); }
+.g-fb { margin-top: 0.5rem; }
+.g-flash { color: var(--red); font-weight: 700; margin: 0.4rem 0; }
+.g-hold, .g-press { width: 100%; font-size: 1.2rem; padding: 1rem; margin: 0.5rem 0; touch-action: none; }
+.g-press { background: var(--red); border-color: var(--red); color: #fff; font-family: var(--font-display); font-size: 1.6rem; text-transform: uppercase; }
+.g-press.pressed { transform: scale(0.97); filter: brightness(0.9); }
+.g-press small { font-family: var(--font-body); font-size: 0.9rem; text-transform: none; font-weight: 400; }
+.g-chest { display: grid; gap: 0.3rem; max-width: 320px; margin: 0 auto; }
+.g-gauge { position: relative; height: 16px; background: var(--line); border-radius: 999px; overflow: hidden; }
+.g-gauge i { position: absolute; top: 0; height: 100%; background: rgba(29,138,74,0.45); }
+.g-gauge b { position: absolute; left: 0; top: 0; height: 100%; background: var(--sea); border-radius: 999px; }
+.g-metro { position: relative; height: 18px; background: var(--line); border-radius: 999px; margin: 0.4rem 0; overflow: hidden; }
+.g-zone { position: absolute; left: 44%; width: 12%; top: 0; height: 100%; background: rgba(29,138,74,0.5); }
+.g-needle { position: absolute; top: 0; width: 4px; height: 100%; background: var(--red); margin-left: -2px; }
+.g-prep { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.5rem; }
+.g-prep .btn.on { background: var(--green); border-color: var(--green); color: #fff; }
+.g-torso { position: relative; max-width: 300px; margin: 0 auto; touch-action: none; }
+.g-target { position: absolute; width: 14%; aspect-ratio: 1; border: 3px dashed var(--sea); border-radius: 50%; opacity: 0.8; }
+.g-pad { position: absolute; width: 14%; aspect-ratio: 1; border-radius: 6px; background: #E9B51C; color: #10232B; display: grid; place-items: center; font-weight: 800; font-family: var(--font-display); font-size: 1.1rem; cursor: grab; box-shadow: 0 2px 6px rgba(0,0,0,0.3); touch-action: none; }
+.g-pad.ok { background: var(--green); color: #fff; cursor: default; }
+.g-notes { margin: 0.5rem 0 0 1.1rem; padding: 0; font-size: 0.95rem; }
+
+.g-stage.portrait .g-hud { font-size: 0.72rem; min-width: 128px; padding: 4px 6px; }
+.g-stage.portrait .g-hud .g-bar { grid-template-columns: 62px 1fr; }
+.g-stage.portrait .g-time { font-size: 1.1rem; }
+.g-stage.portrait .g-signal { padding: 0.4rem 0.7rem; font-size: 0.9rem; }
