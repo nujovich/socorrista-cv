@@ -781,6 +781,7 @@
   }
 
   /* ---------- game ---------- */
+  UI.__lang = () => S.lang;
   const GAME = createGame({
     L, esc, UI, CASES, T, lang: () => S.lang, go,
     flagHtml: (f, c) => flagHtml(f, c),

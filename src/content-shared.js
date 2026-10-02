@@ -559,3 +559,31 @@ UI.game.desaHint = T('Prepara a la víctima y toca su pecho donde va cada parche
 UI.game.cprHint = T('Pulsa el botón (o la barra espaciadora) al ritmo de la aguja: 100-120 por minuto. Tras 30 compresiones, 2 ventilaciones.', 'Polsa el botó (o la barra espaiadora) al ritme de l\'agulla: 100-120 per minut. Després de 30 compressions, 2 ventilacions.');
 UI.game.ventHint = T('Mantén pulsado (o la barra espaciadora) para insuflar y suelta cuando el tórax se eleve ligeramente: zona verde. Demasiado volumen provoca regurgitación.', 'Mantín polsat (o la barra espaiadora) per a insuflar i solta quan el tòrax s\'eleve lleugerament: zona verda. Massa volum provoca regurgitació.');
 UI.game.vosHint = T('Acercas la mejilla a su boca mirando el pecho. Mantén pulsado (o la barra espaciadora) mientras valoras y suelta antes de 10 segundos.', 'Acostes la galta a la seua boca mirant el pit. Mantín polsat (o la barra espaiadora) mentre valores i solta abans de 10 segons.');
+
+/* ---------- Babylon: afluencia, intromisiones, voz ---------- */
+Object.assign(UI.game, {
+  crowdTitle: T('Afluencia', 'Afluència'),
+  crowd_nula: T('Nula', 'Nul·la'), crowd_media: T('Media', 'Mitjana'), crowd_alta: T('Alta', 'Alta'),
+  crowdHint_nula: T('Sin bañistas: silencio, la víctima se ve y se oye enseguida. La marca de distancia te acompaña siempre.', 'Sense banyistes: silenci, la víctima es veu i se sent de seguida. La marca de distància t\'acompanya sempre.'),
+  crowdHint_media: T('Bañistas en el agua y en la playa, ruido de fondo y alguna intromisión. La marca solo aparece a menos de 18 m: mantén tú el contacto visual.', 'Banyistes en l\'aigua i a la platja, soroll de fons i alguna intromissió. La marca només apareix a menys de 18 m: mantín tu el contacte visual.'),
+  crowdHint_alta: T('Mucha gente que te estorba al nadar, ruido que tapa a la víctima e intromisiones. La marca solo aparece a menos de 10 m.', 'Molta gent que et destorba en nadar, soroll que tapa la víctima i intromissions. La marca només apareix a menys de 10 m.'),
+  soundHint: T('Sube el volumen: el ambiente cambia con la afluencia. Si no has añadido grabaciones, solo sonará la voz del dispositivo.', 'Puja el volum: l\'ambient canvia amb l\'afluència. Si no has afegit gravacions, només sonarà la veu del dispositiu.'),
+  loading3d: T('Cargando el motor 3D…', 'Carregant el motor 3D…'),
+  noThree: T('No se ha podido cargar el motor 3D (Babylon.js). Comprueba la conexión y vuelve a intentarlo.', 'No s\'ha pogut carregar el motor 3D (Babylon.js). Comprova la connexió i torna a intentar-ho.'),
+  intrAskTitle: T('Un bañista se te cruza: «Perdona, ¿dónde están las duchas?»', 'Un banyista se\'t creua: «Perdona, on són les dutxes?»'),
+  intrAskOk: T('Le indicas con un gesto que estás en un rescate y sigues sin perder de vista a la víctima', 'Li indiques amb un gest que estàs en un rescat i continues sense perdre de vista la víctima'),
+  intrAskBad: T('Te paras a explicárselo', 'Et pares a explicar-li-ho'),
+  intrAskBadWhy: T('Intromisión: cualquier tarea ajena al rescate te hace perder segundos y el contacto visual (factor RID).', 'Intromissió: qualsevol tasca aliena al rescat et fa perdre segons i el contacte visual (factor RID).'),
+  intrRunTitle: T('Un niño corre por el borde de la piscina justo hacia ti', 'Un xiquet corre per la vora de la piscina just cap a tu'),
+  intrRunOk: T('Lo esquivas y sigues, sin dejar de mirar a la víctima', 'L\'esquives i continues, sense deixar de mirar la víctima'),
+  intrRunBad: T('Te detienes a regañarle', 'Et detens a renyar-lo'),
+  intrRunBadWhy: T('Distracción: en pleno rescate la prioridad es la víctima; la prevención la retomas después.', 'Distracció: en ple rescat la prioritat és la víctima; la prevenció la reprens després.'),
+  intrBallTitle: T('Un balón cae a tu lado y un grupo te pide que se lo devuelvas', 'Una pilota cau al teu costat i un grup et demana que els la tornes'),
+  intrBallOk: T('Lo ignoras y sigues hacia la víctima', 'La ignores i continues cap a la víctima'),
+  intrBallBad: T('Se lo devuelves', 'Els la tornes'),
+  intrBallBadWhy: T('Distracción: cada segundo cuenta y puedes perder de vista a la víctima.', 'Distracció: cada segon compta i pots perdre de vista la víctima.'),
+  intrKept: T('Sigues con el rescate sin perder el contacto visual.', 'Continues amb el rescat sense perdre el contacte visual.'),
+  vPartner: T('¡Voy contigo! Traigo el desfibrilador.', 'Vaig amb tu! Porte el desfibril·lador.'),
+  vDesaOn: T('Coloque los parches en el pecho desnudo del paciente.', 'Col·loque els pegats en el pit nu del pacient.'),
+  vDesaShock: T('Descarga recomendada. Apártense del paciente. Pulse el botón de descarga.', 'Descàrrega recomanada. Aparteu-vos del pacient. Polse el botó de descàrrega.')
+});

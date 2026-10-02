@@ -6,7 +6,7 @@ import pathlib
 root = pathlib.Path(__file__).resolve().parent
 src = root / 'src'
 css = (src / 'styles.css').read_text(encoding='utf-8')
-js = '\n'.join((src / f).read_text(encoding='utf-8') for f in ['content-shared.js', 'content-cases.js', 'content-exam.js', 'game3d.js', 'app.js'])
+js = '\n'.join((src / f).read_text(encoding='utf-8') for f in ['content-shared.js', 'content-cases.js', 'content-exam.js', 'game-bjs.js', 'app.js'])
 assert '</script' not in js.lower(), 'script tag inside JS'
 
 html = f'''<!DOCTYPE html>
@@ -19,7 +19,6 @@ html = f'''<!DOCTYPE html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Big+Shoulders+Display:wght@700;800&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
 {css}
 </style>
