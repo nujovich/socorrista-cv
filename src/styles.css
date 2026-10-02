@@ -295,3 +295,20 @@ details.scene p { margin-top: 0.4rem; }
 .g-hint { position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); margin: 0; background: rgba(16,35,43,0.72); color: #fff; padding: 0.3rem 0.8rem; border-radius: 999px; font-size: 0.85rem; pointer-events: none; white-space: nowrap; animation: g-fade 7s forwards; }
 @keyframes g-fade { 0%, 75% { opacity: 1; } 100% { opacity: 0; } }
 .g-stage.touch .g-hint { bottom: 140px; }
+
+/* ---------- 3D: extracción y PA ---------- */
+.g-stage.pa-mode .g-joy, .g-stage.pa-mode .g-action, .g-stage.pa-mode .g-signal, .g-stage.pa-mode .g-hint, .g-stage.pa-mode .g-cross { display: none !important; }
+.g-bubble { position: absolute; left: 50%; top: 12px; transform: translateX(-50%); max-width: min(90%, 520px); background: rgba(16,35,43,0.84); color: #fff; padding: 0.5rem 0.9rem; border-radius: 12px; font-size: 0.95rem; text-align: center; pointer-events: none; }
+.g-stage.pa-mode .g-hud { top: auto; bottom: auto; }
+.g-pactl { position: absolute; left: 8px; right: 8px; bottom: 8px; background: color-mix(in srgb, var(--surface) 92%, transparent); color: var(--ink); border: 1.5px solid var(--line); border-radius: 12px; padding: 0.6rem 0.8rem; display: grid; gap: 0.35rem; max-height: 55%; overflow: auto; }
+.g-pactl p { margin: 0; }
+.g-ptitle { font-family: var(--font-display); font-weight: 800; font-size: 1.25rem; }
+.g-pactl .g-hold, .g-pactl .g-press { margin: 0.2rem 0; padding: 0.8rem; }
+.g-sheet { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; padding: 0.6rem; background: linear-gradient(to top, rgba(16,35,43,0.5), rgba(16,35,43,0)); max-height: 75%; }
+.g-sheet .g-card { width: min(600px, 100%); max-height: 100%; overflow: auto; box-shadow: 0 6px 24px rgba(0,0,0,0.25); }
+.g-sheet .feedback { margin-bottom: 0.6rem; }
+
+/* el atributo hidden debe ganar a display:flex/grid de los paneles */
+[hidden] { display: none !important; }
+
+@media (max-width: 600px) { .g-pactl { padding: 0.45rem 0.6rem; gap: 0.2rem; } .g-pactl .small { font-size: 0.8rem; line-height: 1.3; } .g-ptitle { font-size: 1.05rem; } .g-pactl .g-hold, .g-pactl .g-press { padding: 0.6rem; } }

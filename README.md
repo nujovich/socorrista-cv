@@ -6,7 +6,7 @@ App web para practicar situaciones de primeros auxilios y salvamento acuático, 
 
 - **Casos**: 12 escenarios (piscina, playa, parque acuático, aguas abiertas) con fase de rescate y de primeros auxilios. En cada paso eliges la acción; la corrección cita la unidad del temario. Feedback con banderas: verde, amarilla y roja (una acción que causa daño invalida el caso, como en el examen de la FSSCV).
 - **Examen**: test de 10 o 20 preguntas de un banco de 52, corrección al final.
-- **Simulación 3D en primera persona** (piscina y playa con corriente de retorno): ves tus brazos y el material; señal, tubo, entrada, nado con la cabeza fuera, control, remolque y extracción en tiempo real, y después mini-juegos de técnica (VOS, insuflaciones, RCP a ritmo, DESA).
+- **Simulación 3D en primera persona** (piscina y playa con corriente de retorno): ves tus brazos y el material; señal, tubo, entrada, nado con la cabeza fuera, control y remolque en tiempo real; extracción animada (con compañero, sola o arrastre en playa) y primeros auxilios con tus manos sobre la víctima: consciencia, vía aérea, VOS, insuflaciones con mascarilla, RCP a ritmo, parches del DESA y descarga, PLS y manta.
 - **Diálogo**: simulacro conversacional con IA (víctima, testigos y entorno), con dictado y lectura en voz alta.
 - **Progreso**: notas por caso, historial de exámenes, errores críticos, exportar/importar.
 

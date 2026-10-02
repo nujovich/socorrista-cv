@@ -547,3 +547,15 @@ UI.game.briefWater = T('Empiezas en el puesto de vigilancia mirando hacia la ví
 UI.game.lookHint = T('Arrastra para mirar · muévete hacia el agua para entrar', 'Arrossega per a mirar · mou-te cap a l\'aigua per a entrar');
 UI.game.noThree = T('No se ha podido cargar el motor 3D (Three.js). Comprueba la conexión y recarga la página.', 'No s\'ha pogut carregar el motor 3D (Three.js). Comprova la connexió i recarrega la pàgina.');
 UI.game.noWebgl = T('Este navegador o dispositivo no permite gráficos 3D (WebGL). Prueba con otro navegador.', 'Este navegador o dispositiu no permet gràfics 3D (WebGL). Prova amb un altre navegador.');
+
+/* ---------- Primeros auxilios y extracción en 3D ---------- */
+UI.game.p3Hear = T('«¡Eh! ¿Me oye? ¿Se encuentra bien?»', '«Eh! Em sent? Es troba bé?»');
+UI.game.p3NoResp = T('No responde.', 'No respon.');
+UI.game.p3ExtractPartner = T('Tu compañero la sujeta por las muñecas desde el borde mientras tú la empujas desde el agua, sin flexionar el tronco.', 'El teu company la subjecta pels canells des de la vora mentre tu l\'espentes des de l\'aigua, sense flexionar el tronc.');
+UI.game.p3ExtractAlone = T('Sales del agua sin soltarla, le cruzas las muñecas y la subes por el bordillo flexionando tus piernas.', 'Ixes de l\'aigua sense soltar-la, li creues els canells i la puges per la vorera flexionant les teues cames.');
+UI.game.p3ExtractBeach = T('La arrastras sujetándola por las axilas hasta la arena seca, fuera del alcance de las olas.', 'L\'arrossegues subjectant-la per les aixelles fins a l\'arena seca, fora de l\'abast de les ones.');
+UI.game.p3ExtractBeachLm = T('La sacas hasta la arena seca sujetándola por las axilas y manteniendo la cabeza alineada con el cuerpo.', 'La traus fins a l\'arena seca subjectant-la per les aixelles i mantenint el cap alineat amb el cos.');
+UI.game.desaHint = T('Prepara a la víctima y toca su pecho donde va cada parche: primero bajo la clavícula derecha (la que tienes más cerca) y después bajo la axila izquierda.', 'Prepara la víctima i toca el seu pit on va cada pegat: primer davall la clavícula dreta (la que tens més prop) i després davall l\'aixella esquerra.');
+UI.game.cprHint = T('Pulsa el botón (o la barra espaciadora) al ritmo de la aguja: 100-120 por minuto. Tras 30 compresiones, 2 ventilaciones.', 'Polsa el botó (o la barra espaiadora) al ritme de l\'agulla: 100-120 per minut. Després de 30 compressions, 2 ventilacions.');
+UI.game.ventHint = T('Mantén pulsado (o la barra espaciadora) para insuflar y suelta cuando el tórax se eleve ligeramente: zona verde. Demasiado volumen provoca regurgitación.', 'Mantín polsat (o la barra espaiadora) per a insuflar i solta quan el tòrax s\'eleve lleugerament: zona verda. Massa volum provoca regurgitació.');
+UI.game.vosHint = T('Acercas la mejilla a su boca mirando el pecho. Mantén pulsado (o la barra espaciadora) mientras valoras y suelta antes de 10 segundos.', 'Acostes la galta a la seua boca mirant el pit. Mantín polsat (o la barra espaiadora) mentre valores i solta abans de 10 segons.');
