@@ -285,3 +285,13 @@ details.scene p { margin-top: 0.4rem; }
 .g-stage.portrait .g-hud .g-bar { grid-template-columns: 62px 1fr; }
 .g-stage.portrait .g-time { font-size: 1.1rem; }
 .g-stage.portrait .g-signal { padding: 0.4rem 0.7rem; font-size: 0.9rem; }
+
+/* ---------- 3D ---------- */
+.g3d .g-canvas { display: block; width: 100%; cursor: grab; touch-action: none; }
+.g3d .g-canvas:active { cursor: grabbing; }
+.g-marker { position: absolute; transform: translate(-50%, -100%); background: rgba(215,38,61,0.92); color: #fff; font-weight: 700; font-size: 0.8rem; padding: 0.1rem 0.45rem; border-radius: 999px; pointer-events: none; white-space: nowrap; }
+.g-marker::after { content: ""; position: absolute; left: 50%; bottom: -5px; margin-left: -5px; border: 5px solid transparent; border-top-color: rgba(215,38,61,0.92); border-bottom: 0; }
+.g-cross { position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%; background: rgba(255,255,255,0.85); box-shadow: 0 0 0 1px rgba(0,0,0,0.35); pointer-events: none; }
+.g-hint { position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); margin: 0; background: rgba(16,35,43,0.72); color: #fff; padding: 0.3rem 0.8rem; border-radius: 999px; font-size: 0.85rem; pointer-events: none; white-space: nowrap; animation: g-fade 7s forwards; }
+@keyframes g-fade { 0%, 75% { opacity: 1; } 100% { opacity: 0; } }
+.g-stage.touch .g-hint { bottom: 140px; }

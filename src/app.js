@@ -743,7 +743,7 @@
     }).join('');
     const games = Object.keys(p.games || {}).map((id) => ({ id, g: p.games[id] })).filter((x) => x.g);
     const gamesHtml = games.length ? '<h3>' + esc(L(UI.nav.game)) + '</h3>' + games.map((x) => { const sc = GAME.scenario(x.id); const c = sc ? caseById(sc.caseId) : null; return c ? '<a class="mini" href="#game/' + x.id + '">' + flagHtml(x.g.lastFlag || 'green') + '<span>' + esc(L(c.title)) + '</span><strong>' + fmtNum(x.g.best) + '</strong></a>' : ''; }).join('') : '';
-    games.forEach((x) => (x.g.critical || []).forEach((t) => crits.push({ id: null, gid: x.id, t })));
+    games.filter((x) => GAME.scenario(x.id)).forEach((x) => (x.g.critical || []).forEach((t) => crits.push({ id: null, gid: x.id, t })));
     const exams = p.exams.slice().reverse().slice(0, 10).map((e) => '<li>' + flagHtml(e.invalid ? 'red' : (e.score >= 6 ? 'green' : 'yellow')) + '<span>' + fmtDate(e.at) + ' · ' + e.n + ' ' + (S.lang === 'va' ? 'preguntes' : 'preguntas') + '</span><strong>' + fmtNum(e.score) + (e.invalid ? ' · ' + esc(L(UI.invalidTag)) : '') + '</strong></li>').join('');
     const empty = !done.length && !p.exams.length && !nDialogs;
     $app.innerHTML =

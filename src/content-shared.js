@@ -535,3 +535,15 @@ UI.game = {
   outStable: T('La víctima llega estable a la transferencia con el SVA.', 'La víctima arriba estable a la transferència amb el SVA.'),
   outHarm: T('Una de tus acciones ha causado daño a la víctima. En el examen de la FSSCV eso invalida la prueba.', 'Una de les teues accions ha causat dany a la víctima. En l\'examen de la FSSCV això invalida la prova.')
 };
+
+/* ---------- Simulación 3D (sustituye textos de la 2D) ---------- */
+UI.game.title = T('Simulación 3D en primera persona', 'Simulació 3D en primera persona');
+UI.game.intro = T('Ves con tus ojos: tus brazos, el tubo de rescate, el agua y la víctima. Activas la señal, coges el material, entras, nadas con la cabeza fuera sin perderla de vista, la controlas, la remolcas y la extraes. Después vienen los primeros auxilios con los mini-juegos de técnica. La víctima empeora mientras tardas.',
+                  'Veus amb els teus ulls: els teus braços, el tub de rescat, l\'aigua i la víctima. Actives el senyal, agafes el material, entres, nedes amb el cap fora sense perdre-la de vista, la controles, la remolques i l\'extraus. Després vénen els primers auxilis amb els minijocs de tècnica. La víctima empitjora mentre tardes.');
+UI.game.controls = T('Ordenador: W/S o ↑/↓ para avanzar y retroceder, A/D para desplazarte, ←/→ o arrastrar con el ratón para mirar, espacio o E para actuar, X para la señal. Móvil: joystick a la izquierda para moverte, arrastra en la pantalla para mirar y botón rojo para actuar.',
+                     'Ordinador: W/S o ↑/↓ per a avançar i retrocedir, A/D per a desplaçar-te, ←/→ o arrossegar amb el ratolí per a mirar, espai o E per a actuar, X per al senyal. Mòbil: joystick a l\'esquerra per a moure\'t, arrossega en la pantalla per a mirar i botó roig per a actuar.');
+UI.game.briefWater = T('Empiezas en el puesto de vigilancia mirando hacia la víctima. El tubo de rescate está en el suelo, a tus pies: camina por encima para cogerlo. La marca sobre la víctima indica la distancia; si la pierdes de vista, gira hasta volver a encontrarla. Señal de rescate en marcha: botón del silbato o tecla X.',
+                       'Comences en el lloc de vigilància mirant cap a la víctima. El tub de rescat està en terra, als teus peus: camina per damunt per a agafar-lo. La marca sobre la víctima indica la distància; si la perds de vista, gira fins a tornar a trobar-la. Senyal de rescat en marxa: botó del xiulet o tecla X.');
+UI.game.lookHint = T('Arrastra para mirar · muévete hacia el agua para entrar', 'Arrossega per a mirar · mou-te cap a l\'aigua per a entrar');
+UI.game.noThree = T('No se ha podido cargar el motor 3D (Three.js). Comprueba la conexión y recarga la página.', 'No s\'ha pogut carregar el motor 3D (Three.js). Comprova la connexió i recarrega la pàgina.');
+UI.game.noWebgl = T('Este navegador o dispositivo no permite gráficos 3D (WebGL). Prueba con otro navegador.', 'Este navegador o dispositiu no permet gràfics 3D (WebGL). Prova amb un altre navegador.');
